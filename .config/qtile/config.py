@@ -111,7 +111,7 @@ for i in groups:
     ])
 
 layouts = [
-    layout.MonadTall(align='MonadTall._left',border_focus='#d75f5f', margin=5),
+    layout.MonadTall(align='MonadTall._right',border_focus='#d75f5f', margin=5),
     layout.Columns(border_focus_stack='#d75f5f', margin=5),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
