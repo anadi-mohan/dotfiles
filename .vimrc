@@ -6,6 +6,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set nu
+set mouse=a
 "set nowrap
 set laststatus=2
 set smartcase
@@ -84,7 +85,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
             \ quit | endif
 
 " Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * silent NERDTreeMirror
+" autocmd BufWinEnter * silent NERDTreeMirror
 
 " new remaps opening and closing brackets
 inoremap ' ''<Esc>i
@@ -93,8 +94,7 @@ inoremap ( ()<Esc>i
 inoremap <C-F1> ()<Esc>1ha<CR><CR><Esc>kS<tab>
 inoremap [ []<Esc>i
 inoremap <C-F2> []<Esc>1ha<CR><CR><Esc>kS<tab>
-inoremap { {}<Esc>1ha<CR><CR><Esc>kS<tab>
-inoremap <C-F3> {}<Esc>i
+inoremap {<CR> {}<Esc>r<CR>i<CR>}<Esc>kS<space><space><space><space>
 "Comments
 inoremap <C-F4> /**/<Esc>2ha
 set noshowmode
