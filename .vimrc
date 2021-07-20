@@ -36,6 +36,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 "Plug 'Valloric/YouCompleteMe',{'do':'./install.py'}
 Plug 'ycm-core/YouCompleteMe'
+Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
@@ -94,7 +95,9 @@ inoremap ( ()<Esc>i
 inoremap <C-F1> ()<Esc>1ha<CR><CR><Esc>kS<tab>
 inoremap [ []<Esc>i
 inoremap <C-F2> []<Esc>1ha<CR><CR><Esc>kS<tab>
-inoremap {<CR> {}<Esc>r<CR>i<CR>}<Esc>kS<space><space><space><space>
+inoremap {<CR> {}<Esc>r<CR>i<CR>}<Esc>kS
 "Comments
 inoremap <C-F4> /**/<Esc>2ha
+
 set noshowmode
+set encoding=UTF-8
