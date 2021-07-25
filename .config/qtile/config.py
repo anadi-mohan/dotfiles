@@ -127,7 +127,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='UbuntuMono Bold',
+    font='UbuntuMono-Bold',
     fontsize=14,
     padding=5,
 )
@@ -148,7 +148,6 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.TextBox('',foreground='#3DA5AF',fontsize=43,padding=0),
-#                widget.Volume(background="#3DA5AF",emoji=True,foreground='#000000',volume_down_command='XF86AudioLowerVolume',volume_up_command='XF86AudioRaiseVolume'),
                 widget.Backlight(background="#3DA5AF",foreground='#000000',backlight_name='intel_backlight',brightness_file='brightness',change_command='xbacklight -set {0}',fmt='{}',step=5),
                 widget.TextBox(u"\U0001F506",background="#3DA5AF"),
 #                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
