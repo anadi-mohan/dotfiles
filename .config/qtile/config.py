@@ -164,7 +164,7 @@ screens = [
             ],
             24,
         ),
-        wallpaper='~/Pictures/wallpaper/default.jpg',
+        wallpaper='~/Pictures/wallpaper/1051469-free-kimi-no-na-wa-wallpapers-1920x1080-for-ipad-pro.jpg',
         wallpaper_mode='fill',
     ),
 ]
