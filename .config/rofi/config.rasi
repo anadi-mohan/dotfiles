@@ -1,6 +1,6 @@
 configuration {
 	modi: "window,run,ssh,drun";
-	width: 40;
+	width: 30;
 /*	lines: 15;*/
 	columns: 1;
 	font: "UbuntuMono Bold 15";
