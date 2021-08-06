@@ -74,6 +74,8 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod],"e", lazy.spawn("emacs"), desc="Launch emacs"),
     Key(["mod1"], "F2", lazy.spawn("rofi -show drun"), desc="Run Launcher"),
+    Key([mod],"v", lazy.spawn("alacritty -e vi"), desc="Launch vim"),
+
     #Toggle Backlight/Brightness of Screen
     Key([], "XF86MonBrightnessUp", lazy.widget['backlight'].change_backlight(backlight.ChangeDirection.UP), desc='To increase the brightness'),
     Key([], "XF86MonBrightnessDown", lazy.widget['backlight'].change_backlight(backlight.ChangeDirection.DOWN),desc='To decrease the brightness'),
