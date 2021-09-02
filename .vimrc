@@ -7,7 +7,7 @@ set expandtab
 set smartindent
 set nu
 set mouse=a
-"set nowrap
+set wrap
 set laststatus=2
 set smartcase
 set noswapfile
@@ -19,10 +19,11 @@ set incsearch
 set nocompatible
 filetype plugin on
 set relativenumber!
+set foldmethod=marker
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
+" Plugins Install -----------------------------{{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
@@ -43,6 +44,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'ap/vim-css-color'
 
 call plug#end()
+" }}}
 
 "colorscheme gruvbox
 colorscheme dracula
@@ -64,6 +66,7 @@ let g:lightline = {
         \}
 let g:ctrlp_use_caching = 0
 
+" Normal Remaps ---------------------- {{{
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -73,11 +76,12 @@ nnoremap <leader>ss :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
-nnoremap <leader>t :botright vertical terminal<CR>
 nnoremap <leader>n :NERDTree ./<CR>
+nnoremap <leader>t :-1read ~/.vim/template.vim<CR>2j$"=expand('%:t')<C-M>pv4hd
 
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
+" }}}
 
 " Start NERDTree and put the cursor back in the other window.
 " autocmd VimEnter * NERDTree ./ | wincmd p
