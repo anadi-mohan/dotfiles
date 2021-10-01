@@ -1,39 +1,28 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+#     ___                __  ___    
+#    /   |  ____  ____ _/  |/  /___ 
+#   / /| | / __ \/ __ `/ /|_/ / __ \
+#  / ___ |/ / / / /_/ / /  / / /_/ /
+# /_/  |_/_/ /_/\__,_/_/  /_/\____/ 
+                                  
 
 from typing import List  # noqa: F401
+import os
+import subprocess
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.widget import backlight
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile import qtile
 
 mod = "mod4"
 terminal = guess_terminal()
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([home])
 
 keys = [
     # Switch between windows
@@ -95,7 +84,7 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i,{'label': '○'}) for i in "123456789"]
 
 for i in groups:
     keys.extend([
@@ -113,8 +102,8 @@ for i in groups:
     ])
 
 layouts = [
-    layout.MonadTall(border_focus='#d75f5f', margin=5, new_client_position='before_current'),
-    layout.Columns(border_focus_stack='#d75f5f', margin=5),
+    layout.MonadTall(border_focus='#41B9D0', margin=5, new_client_position='before_current'),
+    layout.Columns(border_focus_stack='#41B9D0', margin=5),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -140,18 +129,27 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(),
-                widget.GroupBox(),
                 widget.Prompt(),
-                widget.WindowName(),
+                widget.Spacer(length=756),
+                widget.GroupBox(),
+                widget.Spacer(length=bar.STRETCH),
+                #widget.WindowName(),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox('',foreground='#3DA5AF',fontsize=43,padding=0),
-                widget.Backlight(background="#3DA5AF",foreground='#000000',backlight_name='intel_backlight',brightness_file='brightness',change_command='xbacklight -set {0}',fmt='{}',step=5),
-                widget.TextBox(u"\U0001F506",background="#3DA5AF"),
+                widget.TextBox('',foreground='#3DA5B3',fontsize=43,padding=0),
+                widget.Image(
+                    filename=
+                    "~/.config/qtile/icons/network-wireless-signal-excellent-symbolic.svg",
+                    background='#3DA5B3',
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(["alacritty", "-e", "connection"], True)}),
+                widget.Backlight(background="#3DA5B3",foreground='#000000',backlight_name='intel_backlight',brightness_file='brightness',change_command='xbacklight -set {0}',fmt='{}',step=5),
+                widget.Image(
+                    filename="~/.config/qtile/icons/display-brightness-symbolic.svg",
+                    background="#3DA5B3"),
 #                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.TextBox('',foreground="#774CDB",background='#3DA5AF',fontsize=43,padding=0),
                 widget.Net(background="#774CDB",foreground="#000000",interface='wlp3s0', format='{down} ↓↑ {up}'),
@@ -165,8 +163,10 @@ screens = [
                 widget.Clock(background="#1EBC89",foreground='#000000', format='%Y-%m-%d %a %I:%M %p'),
             ],
             24,
+            margin=[5, 9, 0, 9],
+            opacity=0.8,
         ),
-        wallpaper='~/Pictures/wallpaper/1051469-free-kimi-no-na-wa-wallpapers-1920x1080-for-ipad-pro.jpg',
+        wallpaper='~/Pictures/wallpaper/Tokyo-Ghoul-Background-Macbook-1.jpg',
         wallpaper_mode='fill',
     ),
 ]

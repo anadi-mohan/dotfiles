@@ -1,5 +1,6 @@
 syntax on
 
+set encoding=UTF-8
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
@@ -15,12 +16,15 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+set hls
 " Set for vimwiki to work
 set nocompatible
 filetype plugin on
 set relativenumber!
 set foldmethod=marker
+set wildmenu
 
+set textwidth=80
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Plugins Install -----------------------------{{{
@@ -56,6 +60,7 @@ endif
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_show_hidden = 1
+let g:vimwiki_hl_headers = 1
 let mapleader = " "
 let g:netrw_browse_split=2
 let g:netrw_banner = 0
@@ -105,4 +110,3 @@ inoremap {<CR> {}<Esc>r<CR>i<CR>}<Esc>kS
 inoremap <C-F4> /**/<Esc>2ha
 
 set noshowmode
-set encoding=UTF-8
